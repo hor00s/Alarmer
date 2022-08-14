@@ -1,0 +1,10 @@
+colorama==0.4.5
+colorlog==6.6.0
+colormap==1.0.4
+easydev==0.12.0
+pexpect==4.8.0
+ptyprocess==0.7.0
+pygame==2.1.2
+PyQt5==5.15.7
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.11.0
