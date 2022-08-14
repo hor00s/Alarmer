@@ -111,7 +111,7 @@ def delete_selected_event(list_widget, pop_up_lbl):
     """    
     name = _get_selected_event(list_widget)
     for event in os.listdir(Event.FILE):
-        e = Event.load(event[:-4])
+        e = Event.load(event[:-5])
         if e.name == name:
             os.remove(os.path.join(Event.FILE, e.file_name))
     pop_up(pop_up_lbl, f"Event `{name}` has been deleted!")
