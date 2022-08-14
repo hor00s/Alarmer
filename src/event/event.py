@@ -26,7 +26,6 @@ class Event:
         self._date = self._set_date(date)
         self._category = self._set_category(category)
         self._file_name = f"{self._name}{Event.EXTENSION}"
-        # self._event = [('name', self._name), ('time', self._time), ('date', self._date), ('category', self._category)]
         self._event = {'name': self._name, 'time': self._time, 'date': self._date, 'category': self._category}
         self.hour, self.min = self.time.split(':')
         self.day, self.month, self.year = self.date.split('-')
@@ -88,9 +87,10 @@ class Event:
         :param str file: Event or Testevent file, defaults to EVENT_FILE
         :return Event:
         """
-        if not f"{name}{Event.EXTENSION}" in os.listdir(file):
+
+        if not f"{name}" in os.listdir(file):
             raise FileNotFoundError(f"There is not event `{name}`")
-        with open(os.path.join(file, f"{name}{Event.EXTENSION}"), mode='r') as f:
+        with open(os.path.join(file, f"{name}"), mode='r') as f:
             data = json.load(f)
 
         return Event(*[data[v] for v in data])

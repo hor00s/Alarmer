@@ -134,24 +134,25 @@ def rm(arguments: dict):
     by_time = arguments.get('-t')
     by_category = arguments.get('-c')
     for e in os.listdir(Event.FILE):
-        event = Event.load(e[:-5])
-        if by_name:
-            name = arguments['-n']
-            os.remove(os.path.join(Event.FILE, name + Event.EXTENSION))
-            print(f"{Fore.RED}Event: `{name}` has been deleted")
-            break
-        elif by_date:
-            if event.date == arguments['-d']:
-                os.remove(os.path.join(os.path.join(Event.FILE, event.name + Event.EXTENSION)))
-                print(f"{Fore.RED}Event: `{event.name}` has been deleted")
-        elif by_time:
-            if event.time == arguments['-t']:
-                os.remove(os.path.join(os.path.join(Event.FILE, event.name + Event.EXTENSION)))
-                print(f"{Fore.RED}Event: `{event.name}` has been deleted")
-        elif by_category:
-            if event.category == arguments['-c']:
-                os.remove(os.path.join(os.path.join(Event.FILE, event.name + Event.EXTENSION)))
-                print(f"{Fore.RED}Event: `{event.name}` has been deleted")
+        if not e.startswith('.'):
+            event = Event.load(e)
+            if by_name:
+                name = arguments['-n']
+                os.remove(os.path.join(Event.FILE, name + Event.EXTENSION))
+                print(f"{Fore.RED}Event: `{name}` has been deleted")
+                break
+            elif by_date:
+                if event.date == arguments['-d']:
+                    os.remove(os.path.join(os.path.join(Event.FILE, event.name + Event.EXTENSION)))
+                    print(f"{Fore.RED}Event: `{event.name}` has been deleted")
+            elif by_time:
+                if event.time == arguments['-t']:
+                    os.remove(os.path.join(os.path.join(Event.FILE, event.name + Event.EXTENSION)))
+                    print(f"{Fore.RED}Event: `{event.name}` has been deleted")
+            elif by_category:
+                if event.category == arguments['-c']:
+                    os.remove(os.path.join(os.path.join(Event.FILE, event.name + Event.EXTENSION)))
+                    print(f"{Fore.RED}Event: `{event.name}` has been deleted")
 
 def edit(arguments: dict): # TODO: Edit name bug
     to_edit = arguments['-f']
@@ -183,17 +184,19 @@ def peek(arguments: dict):
 def showall(arguments: dict):
     verbose = arguments.get('-v')
     for i, e in enumerate(os.listdir(Event.FILE)):
-        event = Event.load(e[:-5])
-        if verbose is None or verbose == '0':
-            print(f"{i}. {event.name}")
-        elif verbose == '1':
-            print(f"{i}. {event}")
+        if not e.startswith('.'):
+            event = Event.load(e)
+            if verbose is None or verbose == '0':
+                print(f"[{i}]: {event.name}")
+            elif verbose == '1':
+                print(f"[{i}]: {event}")
 
 
 def delall(*args):
     for e in os.listdir(Event.FILE):
-        os.remove(os.path.join('..', '.events', e))
-    print(f"{Fore.RED}All events have beed deleted")
+        if not e.startswith('.'):
+            os.remove(os.path.join('..', '.events', e))
+        print(f"{Fore.RED}All events have beed deleted")
 
 
 def help(*args):
@@ -233,6 +236,7 @@ def textclr(arguments: dict):
 
 def code(*args):
     webbrowser.open(REPO)
+    print(f"{Fore.RED}Consider leaving a star!")
 
 
 commands = {

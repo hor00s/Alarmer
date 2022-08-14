@@ -68,9 +68,10 @@ def update_list(list_widget):
     """    
     list_widget.clear()
     for event in os.listdir(Event.FILE):
-        e = Event.load(event[:-5])
-        text = f"  Name: {e.name} | Date: {e.date} | Time: {e.time} | Type: {e.category}"
-        list_widget.addItem(text)
+        if not event.startswith('.'):
+            e = Event.load(event)
+            text = f"  Name: {e.name} | Date: {e.date} | Time: {e.time} | Type: {e.category}"
+            list_widget.addItem(text)
 
 
 def delete_all_events(list_widget, pop_up_lbl, msgbox: Callable):
@@ -111,15 +112,17 @@ def delete_selected_event(list_widget, pop_up_lbl):
     """    
     name = _get_selected_event(list_widget)
     for event in os.listdir(Event.FILE):
-        e = Event.load(event[:-5])
-        if e.name == name:
-            os.remove(os.path.join(Event.FILE, e.file_name))
+        if not event.startswith('.'):
+            e = Event.load(event)
+            if e.name == name:
+                os.remove(os.path.join(Event.FILE, e.file_name))
     pop_up(pop_up_lbl, f"Event `{name}` has been deleted!")
 
 
 def check_event_exists(name):
     for f in os.listdir(Event.FILE):
-        event = Event.load(f[:-5])
-        if event == name:
-            return True
+        if not f.startswith('.'):
+            event = Event.load(f)
+            if event == name:
+                return True
     return False
