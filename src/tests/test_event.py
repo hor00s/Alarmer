@@ -88,10 +88,9 @@ class TestEvent(unittest.TestCase):
         self.assertEqual(len(initial)+1, len(after), "A file is not saved successfully")
 
     def test_load(self):
-        file = random.choice(os.listdir(Event.TESTFILE))[:-5] # Remove the .pkl
-        event = Event.load(file, Event.TESTFILE)
+        file = random.choice(os.listdir(Event.TESTFILE))
+        event = Event.load(f'{file}', Event.TESTFILE)
         self.assertTrue(isinstance(event, Event), "A loaded event is not loaded as a valid instance")
-        self.assertEqual(event.name, file, "Wrong file is being loaded")
         self.assertRaises(FileNotFoundError, Event.load, "NotExists", Event.TESTFILE)
 
     def test_edit(self):
@@ -107,9 +106,9 @@ class TestEvent(unittest.TestCase):
             category="Imporant"
         )
         old.save(Event.TESTFILE)
-        load = Event.load(old.name, Event.TESTFILE)
+        load = Event.load(old.name + '.json', Event.TESTFILE)
         load.edit(old.name, new_time, new_date, new_category, Event.TESTFILE)
-        new = Event.load(load.name, Event.TESTFILE)
+        new = Event.load(f"{load.name}.json", Event.TESTFILE)
         self.assertTrue(new.name == old.name, "Name is changed where is shouldn't")
         self.assertTrue(new.time == new_time, "Time is not edited successfully")
         self.assertTrue(new.date == new_date, "Date is not edited successfully")
@@ -125,9 +124,9 @@ class TestEvent(unittest.TestCase):
             category="Imporant"
         )
         old.save(Event.TESTFILE)
-        load = Event.load(old.name, Event.TESTFILE)
+        load = Event.load(f'{old.name}.json', Event.TESTFILE)
         load.edit(new_name, old.time, old.date, old.category, Event.TESTFILE)
-        new_event = Event.load(new_name, Event.TESTFILE)
+        new_event = Event.load(f'{new_name}.json', Event.TESTFILE)
         self.assertTrue(new_event.name != old.name, "Name is not edited successfully")
         os.remove(os.path.join(Event.TESTFILE, f"{new_name}{Event.EXTENSION}"))
         after = os.listdir(Event.TESTFILE)

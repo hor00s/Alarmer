@@ -14,34 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>441</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-      <underline>true</underline>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(250, 220, 200);</string>
-    </property>
-    <property name="text">
-     <string>IT'S TIME!</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -88,7 +60,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>90</y>
+      <y>110</y>
       <width>441</width>
       <height>41</height>
      </rect>
@@ -113,7 +85,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>70</y>
+      <y>80</y>
       <width>441</width>
       <height>16</height>
      </rect>
@@ -129,7 +101,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>140</y>
+      <y>160</y>
       <width>441</width>
       <height>41</height>
      </rect>
@@ -150,13 +122,16 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <zorder>label_2</zorder>
-   <zorder>label</zorder>
-   <zorder>ok_btn</zorder>
-   <zorder>postpone_btn</zorder>
-   <zorder>event_name</zorder>
-   <zorder>label_4</zorder>
-   <zorder>event_type</zorder>
+   <widget class="QLCDNumber" name="lcd_time">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>441</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

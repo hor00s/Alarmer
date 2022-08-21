@@ -89,7 +89,7 @@ class Event:
         """
 
         if not f"{name}" in os.listdir(file):
-            raise FileNotFoundError(f"There is not event `{name}`")
+            raise FileNotFoundError(f"There is no event `{name}`")
         with open(os.path.join(file, f"{name}"), mode='r') as f:
             data = json.load(f)
 

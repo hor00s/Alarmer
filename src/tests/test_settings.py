@@ -54,11 +54,11 @@ class TestSettings(unittest.TestCase):
         for i in invalid:
             self.assertFalse(_validate_rgb(i), msg='An invalid rgb value passes')
 
-    def _test_replace_bg(self): # TODO: How to test the bg?
-        with open(os.path.join('components' 'bg.png'), mode='rb') as f:
-            current_bg = f.read()
+    # def _test_replace_bg(self): # TODO: How to test the bg?
+    #     with open(os.path.join('components' 'bg.png'), mode='rb') as f:
+    #         current_bg = f.read()
 
-        # _replace_background()
+    #     # _replace_background()
 
 
 if __name__ == '__main__':

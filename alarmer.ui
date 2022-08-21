@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1032,6 +1032,42 @@
         <height>391</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0,206,209);
+font-weight: bold;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Name: Workout | Time: 15:30 | Date: 15-05-2022 | Category Importand</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Name: Workout | Time: 15:30 | Date: 15-05-2022 | Category Importand</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Name: Workout | Time: 15:30 | Date: 15-05-2022 | Category Importand</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Name: Workout | Time: 15:30 | Date: 15-05-2022 | Category Importand</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Name: Workout | Time: 15:30 | Date: 15-05-2022 | Category Importand</string>
+       </property>
+      </item>
      </widget>
      <widget class="QPushButton" name="edit_btn">
       <property name="geometry">
@@ -1041,6 +1077,9 @@
         <width>94</width>
         <height>28</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Edit</string>
@@ -1113,6 +1152,8 @@
     <addaction name="actionBackground"/>
     <addaction name="actionText_color"/>
     <addaction name="actionAlarm_sound"/>
+    <addaction name="separator"/>
+    <addaction name="actionList_padding"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -1185,6 +1226,11 @@
   <action name="actionSummary_window_on">
    <property name="text">
     <string>Summary window on</string>
+   </property>
+  </action>
+  <action name="actionList_padding">
+   <property name="text">
+    <string>List padding</string>
    </property>
   </action>
  </widget>

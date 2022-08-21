@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
     QPushButton,
+    QLCDNumber,
     QLabel,
 )
 from PyQt5 import uic, QtGui
@@ -29,6 +30,8 @@ class Ringer(QMainWindow):
         
         self.name_lbl = self.findChild(QLabel, 'event_name')
         self.type_lbl = self.findChild(QLabel, 'event_type')
+        self.lcd_clock = self.findChild(QLCDNumber, 'lcd_time')
+        self.lcd_clock.display(event.time)
 
         self.postpone_btn = self.findChild(QPushButton, 'postpone_btn')
         self.ok_btn = self.findChild(QPushButton, 'ok_btn')
@@ -85,7 +88,7 @@ def postpone_event(hour, minute, self):
 
 def check_events(current_time, date):
     for event in os.listdir(Event.FILE):
-        e = Event.load(event[:-5])
+        e = Event.load(event)
         if e.time == current_time and e.date == date:
             return e
         

@@ -4,6 +4,8 @@ import json
 import shutil
 from typing import Any, Callable
 from colormap import hex2rgb
+
+from mainwindow.actions import _pop_up_lbl, pop_up
 from .constants import (
     CONFIG_FILE,
     SOUND,
@@ -38,7 +40,7 @@ def set_configuration(config: str, new_value: str, file: str=CONFIG_FILE):
     data[config] = new_value
 
     with open(file, mode='w') as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=4)
 
 
 def set_background(bg_lbl, size: tuple, fixed_size: bool):
@@ -137,3 +139,10 @@ def get_header(new_header: str, pop_up: Callable, pop_lbl, file: str=CONFIG_FILE
         pop_up(pop_lbl, 'Header has been changed!')
     else:
         pop_up(pop_lbl, 'Header text cannot be more that 20 characters long')
+
+
+def get_padding(padding: int, pop_up: Callable, pop_lbl, file: str=CONFIG_FILE):
+    try:
+        set_configuration('list_padding', int(padding), file)
+    except ValueError:
+        pop_up(pop_lbl, 'Invalid value for padding.')

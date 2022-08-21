@@ -18,6 +18,7 @@ from .settings import (
     change_background,
     set_configuration,
     set_background,
+    get_padding,
     get_header,
     get_color,
 )
@@ -68,9 +69,11 @@ class UI(QMainWindow):
 
         # MENU BAR #
         # Preferences
+        self.list_widget.setSpacing(get_config_attribute('list_padding'))
         self.actionBackground.triggered.connect(lambda: change_background(self, self.messagebox, pop_up, self._pop_up_lbl))
         self.actionText_color.triggered.connect(lambda: self.change_text_color('Text color', 'Enter a hex (#FFFFFF) value, or and RGB (255,0,0) value):'))
         self.actionAlarm_sound.triggered.connect(lambda: change_alarm_sound(self, pop_up, self._pop_up_lbl))
+        self.actionList_padding.triggered.connect(lambda: self.change_list_padding("List padding", "Choose new padding"))
         # Setings
         self.actionHeader.triggered.connect(lambda: self.change_header_text('Header text', 'Your new header:'))
         self.actionSummary_window_on.triggered.connect(lambda: set_configuration('tldr_window', True))
@@ -135,7 +138,7 @@ class UI(QMainWindow):
         self.year_box = self.findChild(QComboBox, 'year_box')
 
     def _load_list_widget(self):
-        self.list_widget = self.findChild(QListWidget, 'list_widget')
+        self.list_widget = self.findChild(QListWidget, 'list_widget') 
 
     def _set_date_today(self):
         prev = dt.now()
@@ -185,7 +188,7 @@ class UI(QMainWindow):
                         update_list(self.list_widget)
 
         elif self.current_editing:
-            to_edit = Event.load(self.current_editing)
+            to_edit = Event.load(f"{self.current_editing}{Event.EXTENSION}")
             time = f"{self.hour_box.currentText()}:{self.min_box.currentText()}"
             date = f"{self.day_box.currentText()}-{self.month_box.currentText()}-{self.year_box.currentText()}"
             to_edit.edit(self.name_entry.text(), time, date, self.type_entry.text())
@@ -204,7 +207,7 @@ class UI(QMainWindow):
 
     def edit_event(self, list_widget):
         self.current_editing = _get_selected_event(list_widget)
-        e = Event.load(self.current_editing)
+        e = Event.load(f"{self.current_editing}{Event.EXTENSION}")
         self.name_entry.setText(e.name)
         self.hour_box.setCurrentText(e.hour)
         self.min_box.setCurrentText(e.min)
@@ -250,3 +253,7 @@ class UI(QMainWindow):
     def source_code_prompt(self):
         pop_up(self._pop_up_lbl, 'Consider leaving a star!', seconds=60)
         webbrowser.open(REPO)
+
+    def change_list_padding(self, title: str, text: str):
+        padding, _ = QInputDialog.getText(self, title, text)
+        get_padding(padding, pop_up, self._pop_up_lbl)
