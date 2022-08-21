@@ -9,8 +9,9 @@ from mainwindow.constants import (
 )
 from mainwindow.settings import (
     get_config_attribute,
-    set_configuration,
     _replace_background,
+    set_configuration,
+    _validate_padding,
     _replace_sound,
     _validate_hex,
     _validate_rgb,
@@ -53,6 +54,12 @@ class TestSettings(unittest.TestCase):
             self.assertTrue(_validate_rgb(v), msg='A valid rgb value fails to pass')
         for i in invalid:
             self.assertFalse(_validate_rgb(i), msg='An invalid rgb value passes')
+
+    def test_validate_padding(self):
+        self.assertEqual(_validate_padding(10), 10)
+        self.assertEqual(_validate_padding('10'), 10)
+        self.assertRaises(ValueError, _validate_padding, 'a')
+
 
     # def _test_replace_bg(self): # TODO: How to test the bg?
     #     with open(os.path.join('components' 'bg.png'), mode='rb') as f:

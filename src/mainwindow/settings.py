@@ -103,8 +103,14 @@ def _validate_hex(hex_value: str):
     pattern = '^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$'
     return re.match(pattern, hex_value)
 
+
 def _validate_rgb(rgb: list):
     return all(list(map(lambda i: 0 <= int(i) <= 255, rgb)))
+
+
+def _validate_padding(padding: int):
+    return int(padding)
+
 
 def get_color(color_value: str, pop_up: Callable, pop_lbl, file: str=CONFIG_FILE):
     """Validates a color value and writes it in the the .config file
@@ -143,6 +149,6 @@ def get_header(new_header: str, pop_up: Callable, pop_lbl, file: str=CONFIG_FILE
 
 def get_padding(padding: int, pop_up: Callable, pop_lbl, file: str=CONFIG_FILE):
     try:
-        set_configuration('list_padding', int(padding), file)
+        set_configuration('list_padding', _validate_padding(padding), file)
     except ValueError:
-        pop_up(pop_lbl, 'Invalid value for padding.')
+        pop_up(pop_lbl, "Invalid value for list padding")
