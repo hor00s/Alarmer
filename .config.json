@@ -1,1 +1,11 @@
-{"text_tab1_color": [0, 255, 255], "tab1_header": "", "tldr_window": true, "bg_scale_size": false}
+{
+    "text_tab1_color": [
+        0,
+        255,
+        255
+    ],
+    "tab1_header": "Reminder",
+    "tldr_window": false,
+    "bg_scale_size": false,
+    "list_padding": 2
+}
