@@ -5,7 +5,7 @@
         255
     ],
     "tab1_header": "Reminder",
-    "tldr_window": false,
+    "tldr_window": true,
     "bg_scale_size": false,
     "list_padding": 2
 }
