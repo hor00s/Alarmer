@@ -88,9 +88,10 @@ def postpone_event(hour, minute, self):
 
 def check_events(current_time, date):
     for event in os.listdir(Event.FILE):
-        e = Event.load(event)
-        if e.time == current_time and e.date == date:
-            return e
+        if not event.startswith('.git'):
+            e = Event.load(event)
+            if e.time == current_time and e.date == date:
+                return e
         
 
 if __name__ == '__main__':

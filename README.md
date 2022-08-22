@@ -29,7 +29,7 @@ A flexible cli tools that let you do everything that is available in the app fro
 
 <h2>~ HOW TO USE ~</h2>
 
-For the gui, simply start the `Alarmer.py`, fill the fields, save, good to go. The app will then save the event in .events folder as a pickle file `(.pkl)` and check every 30 seconds. If it matches the date and time the `ringer.py` will be initiated by it self and notify you. The `Postpone` option will shut the sound notification and move your event 5 minutes later. The `Ok` button will shut the alarm and delete the event from the file. Shutting the window with the `X` button will also shut the notification but the file will not be deleted. If a mistake like this happens, it can also be deleted manually from th GUI by going to the `second tab -> select the event -> Delete`. The cli the tool can be found in `cli/alarmc.py`. Now run `alarmc.py help` for a detailed guide on how to use it!
+For the gui, simply start the `Alarmer.py`, fill the fields, save, good to go. The app will then save the event in .events folder as a json file `(.json)` and check every 30 seconds. If it matches the date and time the `ringer.py` will be initiated by it self and notify you. The `Postpone` option will shut the sound notification and move your event 5 minutes later. The `Ok` button will shut the alarm and delete the event from the file. Shutting the window with the `X` button will also shut the notification but the file will not be deleted. If a mistake like this happens, it can also be deleted manually from th GUI by going to the `second tab -> select the event -> Delete`. The cli the tool can be found in `cli/alarmc.py`. Now run `alarmc.py help` for a detailed guide on how to use it!
 <hr style="border:px solid gray">
 <h2>~ WHAT IT SOLVES ~</h2>
 

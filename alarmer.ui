@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1040,8 +1040,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(0,206,209);
-font-weight: bold;</string>
+       <string notr="true">font-weight: bold;</string>
       </property>
       <item>
        <property name="text">
