@@ -71,7 +71,7 @@ def time_to_string(hour, minute):
         m = f"{minute}"
     return f"{h}:{m}"
 
-def postpone_event(hour, minute, self):
+def postpone_event(hour, minute, self, testing=False):
     if minute < 55:
         minute += 5
     elif minute >= 55 and hour == 23:
@@ -82,8 +82,9 @@ def postpone_event(hour, minute, self):
         minute += 5
         minute = str(minute)[1]
         hour += 1
-    pg.mixer.quit()
-    self.close()
+    if not testing:
+        pg.mixer.quit()
+        self.close()
     return time_to_string(hour, minute)
 
 def check_events(current_time, date):

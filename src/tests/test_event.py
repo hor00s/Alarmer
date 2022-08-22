@@ -133,13 +133,13 @@ class TestEvent(unittest.TestCase):
         
         self.assertTrue(len(initial) == len(after), "Old file is not being deleted successfully when editing name")
 
-    # def test_postpone_event(self):
-    #     self.assertEqual(postpone_event(22, 4), '22:09')
-    #     self.assertEqual(postpone_event(20, 49), '20:54')
-    #     self.assertEqual(postpone_event(20, 55), '21:00')
-    #     self.assertEqual(postpone_event(20, 57), '21:02')
-    #     self.assertEqual(postpone_event(23, 55), '00:00')
-    #     self.assertEqual(postpone_event(23, 57), '00:02')
+    def test_postpone_event(self):
+        self.assertEqual(postpone_event(22, 4, 'self', testing=True), '22:09')
+        self.assertEqual(postpone_event(20, 49, 'self', testing=True), '20:54')
+        self.assertEqual(postpone_event(20, 55, 'self', testing=True), '21:00')
+        self.assertEqual(postpone_event(20, 57, 'self', testing=True), '21:02')
+        self.assertEqual(postpone_event(23, 55, 'self', testing=True), '00:00')
+        self.assertEqual(postpone_event(23, 57, 'self', testing=True), '00:02')
 
 if __name__ == '__main__':
     unittest.main()
