@@ -1,7 +1,7 @@
 import os
 from event.event import Event
 
-REPO = 'https://github.com/pant-s/Alarmer'
+REPO = 'https://github.com/hor00s/Alarmer'
 
 APP_IMAGE = os.path.join('..', 'alarm.png')
 MAINUI = os.path.join('..', 'alarmer.ui')
