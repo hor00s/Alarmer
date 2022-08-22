@@ -48,6 +48,7 @@ class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
         uic.loadUi(MAINUI, self)
+        self.theme_color = get_config_attribute('text_tab1_color')
         self.current_editing = None
         self.wwidht, self.wheight = self.size().width(), self.size().height()
         self.bg_fixed_size = get_config_attribute('bg_scale_size')
@@ -81,8 +82,10 @@ class UI(QMainWindow):
         self.actionSource_code.triggered.connect(lambda: self.source_code_prompt())
 
         # Apearence
+        r, g, b = self.theme_color
         set_background(self.tab1_bg_lbl, (self.wwidht, self.wheight), self.bg_fixed_size)
         update_list(self.list_widget)
+        self.list_widget.setStyleSheet(f"color: rgb({r}, {g}, {b})")
         self._set_date_today()
 
         self.show()
@@ -102,7 +105,7 @@ class UI(QMainWindow):
         self._pop_up_lbl = self.findChild(QLabel, '_pop_up_lbl')
         self._pop_up2_lbl = self.findChild(QLabel, 'tab2_pop_up')
 
-        r, g, b = get_config_attribute('text_tab1_color')
+        r, g, b = self.theme_color
         header = get_config_attribute('tab1_header')
 
         self.header_lbl.setText(header)
@@ -138,7 +141,7 @@ class UI(QMainWindow):
         self.year_box = self.findChild(QComboBox, 'year_box')
 
     def _load_list_widget(self):
-        self.list_widget = self.findChild(QListWidget, 'list_widget') 
+        self.list_widget = self.findChild(QListWidget, 'list_widget')
 
     def _set_date_today(self):
         prev = dt.now()
